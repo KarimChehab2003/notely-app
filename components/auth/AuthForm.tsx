@@ -1,7 +1,6 @@
 "use client";
-import { loginWithEmail, signUpWithEmail } from "@/app/actions/auth";
+import { loginWithEmail, signUpWithEmail } from "@/lib/actions/auth";
 import { useActionState, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
 
 const initialState = { success: false, errors: {}, message: "" };
 
@@ -14,13 +13,6 @@ function AuthForm() {
                 <button className={`tab h-8 flex-1 ${isLogin ? "tab-active" : ""} transition-colors duration-200`} onClick={() => setIsLogin(true)}>Login</button>
                 <button className={`tab h-8 flex-1 ${!isLogin ? "tab-active" : ""} transition-colors duration-200`} onClick={() => setIsLogin(false)}>Sign Up</button>
             </div>
-
-            <button className="btn btn-secondary rounded-full inline-flex items-center w-full my-2 text-secondary-content">
-                <FaGoogle />
-                <span className="font-bold">{isLogin ? "Login" : "Sign In"} With Google</span>
-            </button>
-
-            <div className="divider my-4">OR</div>
 
             {/* Auth Form */}
             <form action={formAction} className="fieldset">

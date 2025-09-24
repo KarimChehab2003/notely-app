@@ -1,9 +1,9 @@
-import { createClient } from "@/lib/supabase/supabaseServer";
+import { createSupabaseServerClient } from "@/lib/supabase/supabaseServer";
 import { redirect } from "next/navigation";
-import { logout } from "../actions/auth";
+import { logout } from "../../lib/actions/auth";
 
 async function Dashboard() {
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
     const { data } = await supabase.auth.getUser();
 
     if (!data) redirect("/login");

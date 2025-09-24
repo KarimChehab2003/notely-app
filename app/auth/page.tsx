@@ -1,4 +1,5 @@
 import AuthForm from "@/components/auth/AuthForm";
+import GoogleLoginButton from "@/components/auth/GoogleLoginButton";
 
 function AuthPage() {
     return (
@@ -7,6 +8,12 @@ function AuthPage() {
 
                 <h1 className="text-4xl sm:text-5xl font-bold text-center">Notely</h1>
                 <p className="text-center text-lg text-base-content/60 mb-4">The repo for your notes.</p>
+
+                <div className="px-4">
+                    <GoogleLoginButton />
+                </div>
+
+                <div className="divider my-4 px-4">OR</div>
 
                 <AuthForm />
             </div>
