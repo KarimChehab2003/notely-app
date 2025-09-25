@@ -3,7 +3,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/supabaseServer";
 import { loginSchema, signUpSchema } from "@/lib/validation/authSchemas";
 import { redirect } from "next/navigation";
-import { createClient } from "../supabase/supabaseClient";
 
 type ActionState = {
     success: boolean;
