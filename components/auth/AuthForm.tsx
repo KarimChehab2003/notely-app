@@ -19,7 +19,7 @@ function AuthForm() {
                 {
                     !isLogin && (
                         <>
-                            <label htmlFor="">Username</label>
+                            <label htmlFor="usernameInput">Username</label>
                             <input type="text" id="usernameInput" name="username" placeholder="Username" className="input focus:ring-0 focus:outline-none focus:border-gray-500 transition-colors duration-200 w-full" />
                             {
                                 formState.errors?.username && (
@@ -30,7 +30,7 @@ function AuthForm() {
                     )
                 }
 
-                <label htmlFor="">Email</label>
+                <label htmlFor="emailInput">Email</label>
                 <input type="email" id="emailInput" name="email" placeholder="Email" className="input focus:ring-0 focus:outline-none focus:border-gray-500 transition-colors duration-200 w-full" />
                 {
                     formState.errors?.email && (
@@ -38,7 +38,7 @@ function AuthForm() {
                     )
                 }
 
-                <label htmlFor="">Password</label>
+                <label htmlFor="passwordInput">Password</label>
                 <input type="password" id="passwordInput" name="password" placeholder="Password" className="input focus:ring-0 focus:outline-none focus:border-gray-500 transition-colors duration-200 w-full" />
                 {
                     formState.errors?.password && (
