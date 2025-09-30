@@ -7,7 +7,6 @@ async function Avatar() {
 
     const name = data.user?.user_metadata?.full_name || data.user?.user_metadata?.username;
     const initial = name.charAt(0).toUpperCase();
-    console.log(data.user)
     return (
         <div className="flex-none">
             <div className="avatar cursor-pointer">

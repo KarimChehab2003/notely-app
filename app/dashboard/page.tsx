@@ -1,7 +1,10 @@
-import { fetchUserNotes } from "@/lib/actions/note";
+import NotesGrid from "@/components/notes/NotesGrid";
+import NotesGridSkeleton from "@/components/notes/NotesGridSkeleton";
 import { createSupabaseServerClient } from "@/lib/supabase/supabaseServer";
+import { getNotesCount } from "@/services/notesService";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { FaPlus } from "react-icons/fa";
 
 async function Dashboard() {
@@ -10,8 +13,7 @@ async function Dashboard() {
 
     if (!userInfo) redirect("/login");
 
-    const userPosts = await fetchUserNotes();
-    console.log(userPosts);
+    const notesTotal = await getNotesCount();
     return (
         <main className="flex justify-center px-4 py-12">
             <div className="max-w-7xl w-full mx-auto">
@@ -19,12 +21,16 @@ async function Dashboard() {
                 <div className="flex justify-between items-center">
                     <div>
                         <p className="text-2xl font-bold">My Notes</p>
-                        <p>4 notes found</p>
+                        <p>{notesTotal ?? 0} notes found</p>
                     </div>
                     <Link href="/dashboard/new" className="btn btn-secondary rounded-lg">
                         <FaPlus /><span>Create Note</span>
                     </Link>
                 </div>
+
+                <Suspense fallback={<NotesGridSkeleton />}>
+                    <NotesGrid />
+                </Suspense>
             </div>
         </main>
     );

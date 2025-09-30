@@ -35,10 +35,3 @@ export const addNewNote = async (_prevState: ActionState, formData: FormData): P
     redirect("/dashboard");
 }
 
-export const fetchUserNotes = async () => {
-    const supabase = await createSupabaseServerClient();
-    const { data, error } = await supabase.from("notes").select("*").order("created_at", { ascending: false });
-    if (error) throw new Error(error.message);
-
-    return data;
-}
