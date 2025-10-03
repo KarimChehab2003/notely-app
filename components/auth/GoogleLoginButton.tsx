@@ -11,7 +11,7 @@ export default function GoogleLoginButton() {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-                redirectTo: "http://localhost:3000/auth/v1/callback",
+                redirectTo: "https://notely-app-psi.vercel.app/auth/v1/callback",
             },
         });
 
