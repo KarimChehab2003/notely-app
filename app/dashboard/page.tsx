@@ -1,3 +1,4 @@
+import SearchAndFilter from "@/components/dashboard/SearchAndFilter";
 import NotesGrid from "@/components/notes/NotesGrid";
 import NotesGridSkeleton from "@/components/notes/NotesGridSkeleton";
 import { createSupabaseServerClient } from "@/lib/supabase/supabaseServer";
@@ -7,13 +8,18 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { FaPlus } from "react-icons/fa";
 
-async function Dashboard() {
+type PageProps = {
+    searchParams: Promise<{ [tag: string]: string }>;
+}
+
+async function Dashboard({ searchParams }: PageProps) {
+    const params = await searchParams;
     const supabase = await createSupabaseServerClient();
     const { data: userInfo } = await supabase.auth.getUser();
 
     if (!userInfo) redirect("/login");
 
-    const notesTotal = await getNotesCount();
+    const notesTotal = await getNotesCount(params.tag, params.q);
     return (
         <main className="flex justify-center px-4 py-12">
             <div className="max-w-7xl w-full mx-auto">
@@ -28,8 +34,10 @@ async function Dashboard() {
                     </Link>
                 </div>
 
+                <SearchAndFilter searchParams={searchParams} />
+
                 <Suspense fallback={<NotesGridSkeleton />}>
-                    <NotesGrid />
+                    <NotesGrid searchParams={searchParams} />
                 </Suspense>
             </div>
         </main>
